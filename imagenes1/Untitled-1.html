@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>TACOS DON JOSE</title>
+<meta property="og:title" content="TACOS DON JOSE">
+<meta property="og:description" content="Los mejores tacos de canasta y carnitas desde 1990.">
+<meta property="og:image" content="URL-DE-UNA-IMAGEN.jpg">
+<meta property="og:url" content="https://tacosdonjose.com">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+        footer {
+      background: #ff000042;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    html { scroll-behavior: smooth; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background-color: #fff8e1; color: #333; line-height: 1.6; }
+    header {
+      background: linear-gradient(135deg, #d32f2f, #b71c1c);
+      color: #fff;
+      padding: 25px 0;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    nav {
+      background-color: #fff3e0;
+      text-align: center;
+      padding: 10px;
+    }
+    nav a {
+      background: #fff;
+      padding: 8px 15px;
+      margin: 0 10px;
+      border-radius: 20px;
+      color: #388e3c;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
+    }
+    nav a:hover { background: #388e3c; color: #fff; }
+    main {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      font-size: 25px;
+      padding: 12px;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+      text-align: center;
+    }
+    .carrusel {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  overflow: hidden;
+}
+.carrusel-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: none;
+  transition: opacity 0.5s ease-in-out;
+}
+.carrusel-img.active {
+  display: block;
+  opacity: 1;
+}
+.carrusel-btn {
+  background-color: #d84315;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.carrusel-btn:hover {
+  background-color: #bf360c;
+  transform: scale(1.05);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.menu-item {
+  background-color: #fff3e0;
+  border: 2px solid #f5c68c;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.7s ease, box-shadow 0.7s ease;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.menu-item span {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #4e342e;
+}
+
+.menu-item button {
+  background-color: #d84315;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item button:hover {
+  background-color: #bf360c;
+}
+.cart {
+  background-color: #fff3e0;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: auto;
+  border: 2px solid #f5c68c;
+}
+
+.cart h2 {
+  text-align: center;
+  color: #d84315;
+}
+
+#lista-carrito {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 15px 0;
+}
+
+#lista-carrito li {
+  background-color: #ffe0b2;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px
+}
+.testimonial-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.testimonial {
+  background-color: #fff8e1;
+  border: 2px solid #f5c68c;
+  border-radius: 15px;
+  padding: 15px 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimoni
+.acerca-container {
+  background-color: #fff3e0;
+  border: 2px solid #f5c68c;
+  border-radius: 15px;
+  padding: 25px;
+  max-width: 900px;
+  margin: 20px auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.acerca-container h2 {
+  font-size: 28px;
+  color: #d84315;
+  margin-bottom: 15px;
+}
+
+.acerca-container i {
+  font-size: 40px;
+  color: #ff7043;
+  margin-bottom: 10px;
+}
+
+.acerca-container p {
+  color: #4e342e;
+  font-size: 16px;
+  line-height: 1.8;
+  text-align: justify;
+}
+.contacto-container {
+  background-color: #fff3e0;
+  border: 2px solid #f5c68c;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 600px;
+  margin: 30px auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.contacto-container h2 {
+  text-align: center;
+  color: #d84315;
+  margin-bottom: 20px;
+}
+
+.contacto-container label {
+  font-weight: bold;
+  color: #4e342e;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.contacto-container input,
+.contacto-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  resize: none;
+}
+
+.contacto-container button {
+  background-color: #d84315;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contacto-container button:hover {
+  background-color: #bf360c;
+}
+.sucursales-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.sucursal-card {
+  background-color: #fff3e0;
+  border: 2px solid #f5c68c;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sucursal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.sucursal-card i {
+  font-size: 28px;
+  color: #d84315;
+  margin-bottom: 10px;
+}
+
+.sucursal-card p {
+  font-size: 16px;
+  color: #4e342e;
+  line-height: 1.5;
+}
+.mapa-container {
+  background-color: #fff3e0;
+  border: 2px solid #f5c68c;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 30px auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 1000px;
+  overflow: hidden;
+}
+
+.mapa-container h3 {
+  color: #d84315;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.mapa-container iframe {
+  width: 100%;
+  height: 350px;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+  </style>
+</head>
+<body>
+
+<div style="display:flex; justify-content:center; align-items:center; gap:15px;">
+  <svg width="80" height="80" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(10, 20)">
+      <path d="M60 40 Q70 0 110 10 Q150 20 160 40 Q170 60 120 70 Q70 80 60 40Z"
+            fill="#ffcc80" stroke="#d84315" stroke-width="3"/>
+      <circle cx="90" cy="45" r="5" fill="#388e3c"/>
+      <circle cx="110" cy="35" r="5" fill="#f44336"/>
+      <circle cx="100" cy="50" r="5" fill="#4caf50"/>
+    </g>
+  </svg>
+
+  <h1><i class="fa-solid fa-utensils"></i> TACOS DON JOSE</h1>
+</div>
+
+
+<nav data-aos="fade-up">
+  <a href="#acerca"><i class="fa-solid fa-store"></i> Acerca</a>
+  <a href="#menu"><i class="fa-solid fa-bowl-food"></i> Menú</a>
+  <a href="#galeria"><i class="fa-solid fa-images"></i> Galería</a>
+  <a href="#sucursales"><i class="fa-solid fa-map-location-dot"></i> Sucursales</a>
+  <a href="#carrito"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
+  <a href="#testimonios"><i class="fa-solid fa-star"></i> Testimonios</a>
+  <a href="#contacto"><i class="fa-solid fa-envelope"></i> Contacto</a>
+  <a href="#final"><i class="fa-solid fa-envelope"></i> final</a>
+</nav>
+<main>
+  <section id="acerca" data-aos="fade-up">
+    <h2>Acerca de</h2>
+    <p data-aos="fade-right">Desde 1990, Tacos Don José se ha convertido en un 
+      referente de la comida callejera mexicana, llevando la tradición de los 
+      tacos a otro nivel. Fundado por Don José y su familia, nuestro taquero mayor, 
+      este lugar nació con la idea de compartir el verdadero sabor del taco mexicano: 
+      callejero, sabroso y hecho al momento.
+       Cada uno de nuestros tacos se prepara con ingredientes frescos, tortillas recién hechas y carne de la mejor calidad. Nuestro compromiso es que cada mordida te transporte al corazón de México. ¡Aquí el sabor manda y el antojo nunca se queda con hambre!</p>
+  </section>
+
+  <section id="galeria" data-aos="fade-up">
+  <h2>Galería</h2>
+  <div class="carrusel">
+    <img class="carrusel-img active" src="imagenes/taco1.jpg" alt="Taco 1">
+    <img class="carrusel-img" src="imagenes/taco2.jpg" alt="Taco 2">
+    <img class="carrusel-img" src="imagenes/taco3.jpg" alt="Taco 3">
+    <img class="carrusel-img" src="imagenes/taco4.jpg" alt="Taco 4">
+    <img class="carrusel-img" src="imagenes/taco5.jpg" alt="Taco 5">
+    <img class="carrusel-img" src="imagenes/taco6.jpeg" alt="Taco 6">
+    <img class="carrusel-img" src="imagenes/taco7.jpg" alt="Taco 7">
+    <img class="carrusel-img" src="imagenes/taco9.jpeg" alt="Taco 9">
+    <img class="carrusel-img" src="imagenes/taco10.jpeg" alt="Taco 10">
+    <img class="carrusel-img" src="imagenes/taco11.jpeg" alt="Taco 11">
+    <img class="carrusel-img" src="imagenes/taco12.jpeg" alt="Taco 12">
+  
+<div style="text-align:center; margin-top:10px;">
+  <button class="carrusel-btn" onclick="prevImage()"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
+  <button class="carrusel-btn" onclick="nextImage()">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+</div>
+
+</section>
+
+<section id="menu" data-aos="fade-up">
+  <h2>Menú 🍽️</h2>
+  <div class="menu-grid">
+
+    <div class="menu-item">
+      <span>Taco de Canasta (Papa) - $10</span>
+      <button onclick="agregarAlCarrito('Taco de Canasta (Papa)', 10)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Carnitas - $15</span>
+      <button onclick="agregarAlCarrito('Taco de Carnitas', 15)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Agua de Horchata - $15</span>
+      <button onclick="agregarAlCarrito('Agua de Horchata', 15)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de pechuga - $30</span>
+      <button onclick="agregarAlCarrito('Taco de pechuga ', 30)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco queso - $25</span>
+      <button onclick="agregarAlCarrito('Taco queso', 25)">Agregar</button>
+    </div>
+
+
+    <div class="menu-item">
+      <span>Combo 5 tacos + bebida - $70</span>
+      <button onclick="agregarAlCarrito('Combo 5 tacos + bebida', 70)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Cochinita Pibil - $24</span>
+      <button onclick="agregarAlCarrito('Taco de Cochinita Pibil', 24)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Ribeye - $35</span>
+      <button onclick="agregarAlCarrito('Taco de Ribeye', 35)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco al Pastor - Cerdo marinado con achiote y piña, cocido al trompo. - $20</span>
+      <button onclick="agregarAlCarrito('Taco al Pastor', 20)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Bistec - Filete de res a la plancha con cebolla. - $20</span>
+      <button onclick="agregarAlCarrito('Taco de Bistec', 20)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Chorizo - Chorizo rojo estilo casero bien dorado. - $19</span>
+      <button onclick="agregarAlCarrito('Taco de Chorizo', 19)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Suadero - Suadero cocido en su jugo, suave y jugoso. - $20</span>
+      <button onclick="agregarAlCarrito('Taco de Suadero', 20)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Tripa - Tripa de res crujiente y sabrosa. - $22</span>
+      <button onclick="agregarAlCarrito('Taco de Tripa', 22)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco Campechano - Mezcla de chorizo y bistec. - $23</span>
+      <button onclick="agregarAlCarrito('Taco Campechano', 23)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco Vegetariano - Rajas, nopales, champiñones y frijoles. - $18</span>
+      <button onclick="agregarAlCarrito('Taco Vegetariano', 18)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Barbacoa - Barbacoa de borrego cocida lentamente en pencas de maguey. - $26</span>
+      <button onclick="agregarAlCarrito('Taco de Barbacoa', 26)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Arrachera - Fina arrachera marinada a la parrilla. - $28</span>
+      <button onclick="agregarAlCarrito('Taco de Arrachera', 28)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Costilla - Costilla de res desmenuzada con especias. - $25</span>
+      <button onclick="agregarAlCarrito('Taco de Costilla', 25)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Pollo Asado - Pollo marinado a la parrilla con salsa verde. - $18</span>
+      <button onclick="agregarAlCarrito('Taco de Pollo Asado', 18)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Longaniza - Longaniza dorada con papas. - $19</span>
+      <button onclick="agregarAlCarrito('Taco de Longaniza', 19)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Nopales con Queso - Nopales asados con queso derretido. - $16</span>
+      <button onclick="agregarAlCarrito('Taco de Nopales con Queso', 16)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Pescado - Filete de pescado capeado con salsa tártara. - $30</span>
+      <button onclick="agregarAlCarrito('Taco de Pescado', 30)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Camarón - Camarones al ajillo en tortilla de harina. - $32</span>
+      <button onclick="agregarAlCarrito('Taco de Camarón', 32)">Agregar</button>
+    </div>
+
+    <div class="menu-item">
+      <span>Taco de Lengua - Lengua de res cocida al vapor con salsa verde. - $26</span>
+      <button onclick="agregarAlCarrito('Taco de Lengua', 26)">Agregar</button>
+    </div>
+
+  </div> 
+  <section id="promociones" data-aos="fade-up">
+  <h2><i class="fa-solid fa-bolt"></i> Promociones del día</h2>
+  <div class="menu-grid">
+    <div class="menu-item">
+      <span>Martes de Tacos - 3x2 en tacos al pastor</span>
+      <button onclick="agregarAlCarrito('Promo 3x2 Pastor', 40)">Agregar</button>
+    </div>
+  </div>
+</section>
+
+</section>
+
+<section id="carrito" data-aos="fade-left">
+  <h2><i class="fa-solid fa-cart-shopping"></i> Carrito de Compras</h2>
+  <div class="cart">
+    <ul id="lista-carrito"></ul>
+    <p><strong>Total: $<span id="total">0</span></strong></p>
+    <button onclick="vaciarCarrito()">Vaciar carrito</button>
+    <button onclick="enviarPedidoWhatsApp()">Enviar pedido por WhatsApp</button>
+    </div>
+</section>
+
+
+<section id="testimonios" data-aos="zoom-in">
+  <h2><i class="fa-solid fa-star"></i> Testimonios</h2>
+  <div class="testimonial-container">
+
+    <div class="testimonial">
+      <p><i class="fa-solid fa-user"></i> <strong>Juan Pérez</strong></p>
+      <p>“Los mejores tacos que he probado. Servicio excelente y rápido.”</p>
+    </div>
+
+    <div class="testimonial">
+      <p><i class="fa-solid fa-user"></i> <strong>Ana Martínez</strong></p>
+      <p>“Riquísimos tacos de carnitas. Muy recomendados.”</p>
+    </div>
+
+    <div class="testimonial">
+      <p><i class="fa-solid fa-user"></i> <strong>Luis Rodríguez</strong></p>
+      <p>“Los tacos de canasta son una delicia y llegan calientitos a casa.”</p>
+    </div>
+
+    <div class="testimonial">
+      <p><i class="fa-solid fa-user"></i> <strong>Jose Luis Gonzalez</strong></p>
+      <p>“Un lugar muy limpio. 100% recomendado.”</p>
+    </div>
+
+    <div class="testimonial">
+      <p><i class="fa-solid fa-user"></i> <strong>Denya Dolores</strong></p>
+      <p>“Están súper bien los tacos.”</p>
+    </div>
+
+    <div class="testimonial">
+      <p><i class="fa-solid fa-user"></i> <strong>Gabo Toriz</strong></p>
+      <p>“Muy recomendados.”</p>
+    </div>
+
+    <div class="testimonial">
+      <p><i class="fa-solid fa-user"></i> <strong>Anabel Rodriguez</strong></p>
+      <p>“Los de buche son los mejores.”</p>
+    </div>
+
+    <div class="testimonial">
+      <p><i class="fa-solid fa-user"></i> <strong>Chiu Sanchez</strong></p>
+      <p>“Los de nana increíbles.”</p>
+    </div>
+
+    <div class="testimonial">
+      <p><i class="fa-solid fa-user"></i> <strong>Alejandra Barroso</strong></p>
+      <p>“El mejor negocio.”</p>
+    </div>
+
+    <div class="testimonial">
+      <p><i class="fa-solid fa-user"></i> <strong>Alejandra Barroso</strong></p>
+      <p>“El mejor .”</p>
+    </div>
+
+    <div class="testimonial">
+      <p><i class="fa-solid fa-user"></i> <strong>cesar torres</strong></p>
+      <p>“El mejor socio.”</p>
+    </div>
+
+    <div class="testimonial">
+      <p><i class="fa-solid fa-user"></i> <strong>Emiliano corona</strong></p>
+      <p>“Tacos de perro”</p>
+    </div>
+
+  </div>
+</section>
+
+
+  <section id="sucursales" data-aos="fade-up">
+  <h2><i class="fa-solid fa-map-location-dot"></i> Nuestras Sucursales</h2>
+  <div class="sucursales-container">
+
+    <div class="sucursal-card">
+      <i class="fa-solid fa-store"></i>
+      <p><strong>Matriz</strong></p>
+      <p>Av. Principal López Mateos<br>Nezahualcóyotl, Edo. Mex</p>
+    </div>
+
+    <div class="sucursal-card">
+      <i class="fa-solid fa-store"></i>
+      <p><strong>Sucursal Poniente</strong></p>
+      <p>Poniente 24 No. 316<br>Nezahualcóyotl, Edo. Mex</p>
+    </div>
+
+    
+
+  </div>
+</section>
+
+
+  <section id="contacto" data-aos="fade-right">
+  <div class="contacto-container">
+    <h2><i class="fa-solid fa-envelope"></i> Contáctanos</h2>
+    <form id="contact-form">
+      <label for="nombre"><i class="fa-solid fa-user"></i> Nombre:</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+
+      <label for="mensaje"><i class="fa-solid fa-comment-dots"></i> Mensaje:</label>
+      <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+
+      <button type="submit"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
+    </form>
+  </div>
+</section>
+
+
+<div class="mapa-container" data-aos="fade-up">
+  <h3><i class="fa-solid fa-location-dot"></i> Mapa de ubicaciones</h3>
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.2876704040286!2d-99.03141179034584!3d19.39997278179681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1fcdb835b66dd%3A0xe96b86c896dba087!2sEl%20Coyote!5e0!3m2!1ses-419!2smx!4v1748568310303!5m2!1ses-419!2smx" 
+    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+<footer data-aos="fade-up">
+  <p>&copy; 2025 TACOS DON JOSE | Hecho por Jose Luis Gonzalez</p>
+  <p>📍 Nezahualcóyotl, Edo. Mex | 🕒 Lun-Dom: 9am - 10pm</p>
+  <p>Síguenos: 
+    <a href="https://www.facebook.com/profile.php?id=61572324463358"><i class="fa-brands fa-facebook"></i></a>
+    <a href="https://www.instagram.com/tacosdonjose_utc/"><i class="fa-brands fa-instagram"></i></a>
+  </p>
+</footer>
+  
+<a class="whatsapp-float" href="https://wa.me/5572359914" target="_blank" title="Envíanos un mensaje" data-aos="zoom-in">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  
+  AOS.init({ duration: 1000, once: true });
+
+  
+  let index = 0;
+const images = document.querySelectorAll(".carrusel-img");
+
+function showImage(n) {
+  images.forEach(img => img.classList.remove("active"));
+  images[n].classList.add("active");
+}
+
+function nextImage() {
+  index = (index + 1) % images.length;
+  showImage(index);
+}
+
+function prevImage() {
+  index = (index - 1 + images.length) % images.length;
+  showImage(index);
+}
+
+setInterval(nextImage, 3000); 
+  
+  let carrito = [];
+
+  function agregarAlCarrito(nombre, precio) {
+    carrito.push({ nombre, precio });
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    actualizarCarrito();
+  }
+
+  function eliminarItem(index) {
+    carrito.splice(index, 1);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    actualizarCarrito();
+  }
+
+  function vaciarCarrito() {
+    carrito = [];
+    localStorage.removeItem('carrito');
+    actualizarCarrito();
+  }
+
+  function actualizarCarrito() {
+    const lista = document.getElementById('lista-carrito');
+    const totalEl = document.getElementById('total');
+    lista.innerHTML = '';
+    let total = 0;
+
+    carrito.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.innerHTML = `<i class='fa-solid fa-check'></i> ${item.nombre} - $${item.precio}
+        <button onclick="eliminarItem(${index})" style="margin-left:10px; background:#b71c1c; color:white; border:none; padding:2px 6px; border-radius:4px;">X</button>`;
+      lista.appendChild(li);
+      total += item.precio;
+    });
+
+    totalEl.textContent = total;
+  }
+
+  function cargarCarrito() {
+    const guardado = localStorage.getItem('carrito');
+    if (guardado) {
+      carrito = JSON.parse(guardado);
+      actualizarCarrito();
+    }
+  }
+
+  function enviarPedidoWhatsApp() {
+    if (carrito.length === 0) {
+      alert("Tu carrito está vacío.");
+      return;
+    }
+    let mensaje = "Hola! Quiero hacer un pedido:\n";
+    let total = 0;
+    carrito.forEach(item => {
+      mensaje += `- ${item.nombre}: $${item.precio}\n`;
+      total += item.precio;
+    });
+    mensaje += `Total: $${total}`;
+    const url = `https://wa.me/5572359914?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, "_blank");
+  }
+
+  window.onload = cargarCarrito;
+
+  
+  emailjs.init("jslJ4XKHZYT4XT4d9");
+
+  document.getElementById("contact-form")?.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const nombre = document.getElementById("nombre").value.trim();
+    const mensaje = document.getElementById("mensaje").value.trim();
+    if (!nombre || !mensaje) {
+      alert("❗Por favor completa todos los campos.");
+      return;
+    }
+    emailjs.send("service_b1cy5tq", "template_5ws1uxa", { nombre, mensaje })
+      .then(() => {
+        alert("✅ Mensaje enviado correctamente.");
+        document.getElementById("contact-form").reset();
+      }, (error) => {
+        alert("❌ Error al enviar: " + JSON.stringify(error));
+      });
+  });
+  
+</script>
+
+</body>
+</html>
